@@ -1,0 +1,42 @@
+        joystick.SnapX = true;
+        joystick.SnapY = true;
+
+        if(joystick.Horizontal > .2f)
+        {
+            if(joystick.Vertical > .2f || joystick.Vertical < -.2f)
+            {
+                transform.position = new Vector2(transform.position.x + (Speed/2) * Time.deltaTime, transform.position.y);
+            }else{
+                transform.position = new Vector2(transform.position.x + Speed * Time.deltaTime, transform.position.y);
+            }
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+            animator.SetBool("IsMove", true);
+
+        }else if(joystick.Horizontal < -.2f)
+        {
+            if(joystick.Vertical > .2f || joystick.Vertical < -.2f)
+            {
+                transform.position = new Vector2(transform.position.x - (Speed/2) * Time.deltaTime, transform.position.y);
+            }else{
+                transform.position = new Vector2(transform.position.x - Speed * Time.deltaTime, transform.position.y);
+            }
+            transform.localRotation = Quaternion.Euler(0, 180, 0);
+            animator.SetBool("IsMove", true);
+        }
+        if(joystick.Vertical > .2f)
+        {
+            transform.position = new Vector2(transform.position.x, transform.position.y + Speed * Time.deltaTime);
+            //rd.MovePosition(rd.position + movment * Speed );
+            //transform.localRotation = Quaternion.Euler(0, 180, 0);
+            animator.SetBool("IsMove", true);
+        }else if(joystick.Vertical < -.2f)
+        {
+            transform.position = new Vector2(transform.position.x, transform.position.y - Speed * Time.deltaTime);
+            //rd.MovePosition(rd.position + movment * Speed );
+            //transform.localRotation = Quaternion.Euler(0, 0, 0);
+            animator.SetBool("IsMove", true);
+        }
+        if(joystick.Horizontal == 0 && joystick.Vertical == 0)
+        {
+            animator.SetBool("IsMove", false);
+        }
